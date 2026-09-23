@@ -111,7 +111,7 @@ you match the download to your Office build. The add-in assemblies are AnyCPU an
 them. The package itself is x64 and needs 64-bit Windows — which is a different question from
 Office's bitness.
 
-It installs per machine, into `%ProgramFiles%\iron-jay\Macro Polo`, and registers each add-in under
+It installs per machine, into `%ProgramFiles%\Very Good Endpoint Co\Macro Polo`, and registers each add-in under
 `HKLM\SOFTWARE\Microsoft\Office\<app>\Addins` alongside the COM class registration. It is a file
 copy plus registry entries — nothing else.
 
@@ -143,9 +143,9 @@ add-in works.
 
 Optional. Settings are read in this order, the first one found winning:
 
-1. `HKLM\Software\Policies\iron-jay\Macro Polo` — Group Policy
-2. `HKLM\Software\iron-jay\Macro Polo` — machine-wide default
-3. `HKCU\Software\iron-jay\Macro Polo` — the user's own preference
+1. `HKLM\Software\Policies\Very Good Endpoint Co\Macro Polo` — Group Policy
+2. `HKLM\Software\Very Good Endpoint Co\Macro Polo` — machine-wide default
+3. `HKCU\Software\Very Good Endpoint Co\Macro Polo` — the user's own preference
 
 | Value | Type | Meaning |
 | --- | --- | --- |
@@ -154,20 +154,20 @@ Optional. Settings are read in this order, the first one found winning:
 
 ### Group Policy
 
-ADMX and ADML templates are installed to `%ProgramFiles%\iron-jay\Macro Polo\policies`. Group Policy
+ADMX and ADML templates are installed to `%ProgramFiles%\Very Good Endpoint Co\Macro Polo\policies`. Group Policy
 does not read them from there — copy them where the tooling looks:
 
 ```bash
-copy "%ProgramFiles%\iron-jay\Macro Polo\policies\MacroPolo.admx" "%SystemRoot%\PolicyDefinitions\"
+copy "%ProgramFiles%\Very Good Endpoint Co\Macro Polo\policies\MacroPolo.admx" "%SystemRoot%\PolicyDefinitions\"
 ```
 
 ```bash
-copy "%ProgramFiles%\iron-jay\Macro Polo\policies\en-US\MacroPolo.adml" "%SystemRoot%\PolicyDefinitions\en-US\"
+copy "%ProgramFiles%\Very Good Endpoint Co\Macro Polo\policies\en-US\MacroPolo.adml" "%SystemRoot%\PolicyDefinitions\en-US\"
 ```
 
 For a domain, put them in the central store instead
 (`\\<domain>\SYSVOL\<domain>\Policies\PolicyDefinitions`). The settings then appear under
-**Computer Configuration → Administrative Templates → iron-jay → Macro Polo**.
+**Computer Configuration → Administrative Templates → Very Good Endpoint Co. → Macro Polo**.
 
 ## Building
 

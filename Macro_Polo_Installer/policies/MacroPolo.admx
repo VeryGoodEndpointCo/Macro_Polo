@@ -16,16 +16,16 @@
                    xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
 
   <policyNamespaces>
-    <target prefix="macropolo" namespace="ironjay.Policies.MacroPolo" />
+    <target prefix="macropolo" namespace="VeryGoodEndpointCo.Policies.MacroPolo" />
     <using prefix="windows" namespace="Microsoft.Policies.Windows" />
   </policyNamespaces>
 
   <resources minRequiredRevision="1.0" />
 
   <categories>
-    <category name="IronJay" displayName="$(string.IronJay)" />
+    <category name="VeryGoodEndpointCo" displayName="$(string.VeryGoodEndpointCo)" />
     <category name="MacroPolo" displayName="$(string.MacroPolo)">
-      <parentCategory ref="IronJay" />
+      <parentCategory ref="VeryGoodEndpointCo" />
     </category>
   </categories>
 
@@ -40,7 +40,7 @@
             displayName="$(string.AutoShow)"
             explainText="$(string.AutoShow_Explain)"
             presentation="$(presentation.AutoShow)"
-            key="Software\Policies\iron-jay\Macro Polo">
+            key="Software\Policies\Very Good Endpoint Co\Macro Polo">
       <parentCategory ref="MacroPolo" />
       <supportedOn ref="windows:SUPPORTED_Windows7" />
       <elements>
@@ -66,7 +66,7 @@
             class="Machine"
             displayName="$(string.Logging)"
             explainText="$(string.Logging_Explain)"
-            key="Software\Policies\iron-jay\Macro Polo"
+            key="Software\Policies\Very Good Endpoint Co\Macro Polo"
             valueName="Logging">
       <parentCategory ref="MacroPolo" />
       <supportedOn ref="windows:SUPPORTED_Windows7" />

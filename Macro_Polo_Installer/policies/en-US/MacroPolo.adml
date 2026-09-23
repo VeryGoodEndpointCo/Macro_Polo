@@ -12,7 +12,7 @@
   <resources>
     <stringTable>
 
-      <string id="IronJay">iron-jay</string>
+      <string id="VeryGoodEndpointCo">Very Good Endpoint Co.</string>
       <string id="MacroPolo">Macro Polo</string>
 
       <string id="AutoShow">When to show the macro status banner</string>

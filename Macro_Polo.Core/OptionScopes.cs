@@ -18,13 +18,13 @@ namespace Macro_Polo.Core
     internal static class OptionScopes
     {
         /// <summary>Set by Group Policy. Overrides everything below it.</summary>
-        internal const string Policy = @"Software\Policies\iron-jay\Macro Polo";
+        internal const string Policy = @"Software\Policies\Very Good Endpoint Co\Macro Polo";
 
         /// <summary>Machine-wide default, which the installer can write with AUTOSHOW=n.</summary>
-        internal const string Machine = @"Software\iron-jay\Macro Polo";
+        internal const string Machine = @"Software\Very Good Endpoint Co\Macro Polo";
 
         /// <summary>The user's own preference, used when nothing above is set.</summary>
-        internal const string User = @"Software\iron-jay\Macro Polo";
+        internal const string User = @"Software\Very Good Endpoint Co\Macro Polo";
 
         /// <summary>
         /// Returns the first value found for <paramref name="valueName"/>, or null when the

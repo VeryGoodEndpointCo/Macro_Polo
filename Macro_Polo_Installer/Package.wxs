@@ -12,7 +12,7 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
 
   <Package Name="Macro Polo"
-           Manufacturer="iron-jay"
+           Manufacturer="Very Good Endpoint Co."
            Version="$(ProductVersion)"
            UpgradeCode="8F3C2A15-6D74-4E9B-B052-9C7A1E4D6F30"
            Scope="perMachine"
@@ -23,7 +23,7 @@
     <!-- Without ARPPRODUCTICON the entry in Apps and Features shows the generic installer icon. -->
     <Icon Id="MacroPolo.ico" SourceFile="$(IconFile)" />
     <Property Id="ARPPRODUCTICON" Value="MacroPolo.ico" />
-    <Property Id="ARPHELPLINK" Value="https://github.com/iron-jay/Macro_Polo" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/VeryGoodEndpointCo/Macro_Polo" />
 
     <!--
       The upgrade code is carried over from the VSTO-based package deliberately, so that installing
@@ -93,7 +93,7 @@
       on disk for the CodeBase in that registration to point at.
     -->
     <StandardDirectory Id="ProgramFiles6432Folder">
-      <Directory Id="VENDORFOLDER" Name="iron-jay">
+      <Directory Id="VENDORFOLDER" Name="Very Good Endpoint Co">
         <Directory Id="INSTALLFOLDER" Name="Macro Polo">
           <!--
             The ADMX templates are shipped here for reference. Group Policy does not read them
@@ -154,7 +154,7 @@
         quietly stop users changing the setting for themselves.
       -->
       <Component Id="AutoShowSetting" Condition="AUTOSHOW">
-        <RegistryValue Root="HKLM" Key="SOFTWARE\iron-jay\Macro Polo" Name="AutoShow"
+        <RegistryValue Root="HKLM" Key="SOFTWARE\Very Good Endpoint Co\Macro Polo" Name="AutoShow"
                        Type="integer" Value="[AUTOSHOW]" KeyPath="yes" />
       </Component>
     </ComponentGroup>
