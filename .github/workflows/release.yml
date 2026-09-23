@@ -1,0 +1,59 @@
+name: Release
+
+# Pushing a v* tag builds the MSI and publishes it as a release. Pushes to master run the same
+# build without publishing, so a broken package shows up before anything is tagged.
+
+on:
+  push:
+    branches: [master]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Check the tag matches the package version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          $wixproj = Get-Content Macro_Polo_Installer\Macro_Polo_Installer.wixproj -Raw
+          if ($wixproj -notmatch '<ProductVersion>([^<]+)</ProductVersion>') { throw 'No ProductVersion in Macro_Polo_Installer.wixproj.' }
+          $package = $Matches[1]
+          $tag = '${{ github.ref_name }}'.TrimStart('v')
+          if ($package -ne $tag) { throw "Tag ${{ github.ref_name }} does not match ProductVersion $package." }
+
+      # Build-Installer builds the add-ins, gates on Test-ComSurface, then packages. Windows
+      # PowerShell rather than pwsh: the COM surface check loads the .NET Framework add-ins
+      # in-process.
+      - name: Build installer
+        shell: powershell
+        run: .\build\Build-Installer.ps1 -OutputDirectory dist
+
+      - name: Upload build
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: Macro_Polo
+          path: dist/
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" dist\Macro_Polo.msi `
+            --title "Macro Polo $('${{ github.ref_name }}'.TrimStart('v'))" `
+            --generate-notes
